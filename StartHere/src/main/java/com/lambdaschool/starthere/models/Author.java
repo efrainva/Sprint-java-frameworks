@@ -10,16 +10,17 @@ public class Author extends Auditable{
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long authorid;
 
-    private String lastnamel;
+    private String lastname;
+
 
     private String firstname;
 
     public Author() {
     }
 
-    public Author(long authorid, String lastnamel, String firstname) {
+    public Author(long authorid, String lastname, String firstname) {
         this.authorid = authorid;
-        this.lastnamel = lastnamel;
+        this.lastname = lastname;
         this.firstname = firstname;
     }
 
@@ -31,12 +32,12 @@ public class Author extends Auditable{
         this.authorid = authorid;
     }
 
-    public String getLastnamel() {
-        return lastnamel;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setLastnamel(String lastnamel) {
-        this.lastnamel = lastnamel;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getFirstname() {

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,27 @@ public class BookServiceImpl implements BookService {
 
         return bookrepo.save(newBook);
 
+    }
+
+    @Transactional
+    @Override
+    public Book update(Book book, long id) {
+        Book currentBook = bookrepo.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(Long.toString(id)));
+
+        if (book.getBooktittle() != null) {
+            currentBook.setBooktittle(book.getBooktittle());
+        }
+
+        if (book.getCopy() != 0) {
+            currentBook.setCopy(book.getCopy());
+        }
+
+        if (book.getIsdn() != null) {
+            currentBook.setIsdn(book.getIsdn());
+        }
+
+        return bookrepo.save(currentBook);
     }
 
 }
